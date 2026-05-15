@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --bg: #0a0d14;
+    --bg2: #111520;
+    --bg3: #161b28;
+    --surface: #1a2035;
+    --surface2: #212840;
+    --surface3: #262f4a;
+    --border: rgb(255 255 255 / 0.07);
+    --border2: rgb(255 255 255 / 0.12);
+    --border3: rgb(255 255 255 / 0.18);
+    --text: #e8eaf6;
+    --text2: #9da4c2;
+    --text3: #6b7299;
+    --accent: #4f7fff;
+    --accent-glow: rgb(79 127 255 / 0.25);
+    --green: #22d07a;
+    --red: #ff5b7a;
+    --yellow: #ffc93c;
+    --purple: #a78bfa;
+    --cyan: #38bdf8;
+    --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+    --font-syne: 'Syne', system-ui, sans-serif;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-dm-sans);
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border2);
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .font-syne {
+    font-family: var(--font-syne);
+  }
+
+  .glass-card {
+    @apply rounded-2xl border backdrop-blur-xl transition-all;
+    background: var(--surface);
+    border-color: var(--border);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #4f7fff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .float-anim {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .skeleton {
+    @apply rounded-lg;
+    background: linear-gradient(
+      90deg,
+      var(--surface) 25%,
+      var(--surface2) 50%,
+      var(--surface) 75%
+    );
+    background-size: 200%;
+    animation: skeleton-shimmer 1.5s ease infinite;
+  }
+
+  .page-in {
+    animation: page-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200%;
+  }
+  100% {
+    background-position: -200%;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
