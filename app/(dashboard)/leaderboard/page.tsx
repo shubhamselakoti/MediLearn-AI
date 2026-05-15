@@ -3,22 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { LeaderboardEntry } from "@/types";
 
-const MOCK: LeaderboardEntry[] = [
-  { rank:1,userId:"1",name:"Arjun Mehta",xp:8920,streak:45,level:18},
-  { rank:2,userId:"2",name:"Priya Nair",xp:7840,streak:32,level:16},
-  { rank:3,userId:"3",name:"Rohan Singh",xp:7120,streak:28,level:15},
-  { rank:4,userId:"4",name:"Ananya Patel",xp:6580,streak:21,level:14},
-  { rank:5,userId:"5",name:"Vikram Raj",xp:5940,streak:19,level:12},
-  { rank:6,userId:"6",name:"Deepa Kumar",xp:5230,streak:15,level:11},
-  { rank:7,userId:"7",name:"Sanjay Iyer",xp:4810,streak:12,level:10},
-  { rank:8,userId:"8",name:"Kavya Reddy",xp:4450,streak:9,level:9},
-  { rank:9,userId:"9",name:"Aditya Gupta",xp:4100,streak:8,level:9},
-  { rank:10,userId:"10",name:"Meera Joshi",xp:3780,streak:7,level:8},
-  { rank:11,userId:"11",name:"Rahul Verma",xp:3420,streak:6,level:7},
-  { rank:12,userId:"12",name:"Sneha Das",xp:3150,streak:5,level:7},
-  { rank:13,userId:"13",name:"Karthik M.",xp:2900,streak:5,level:6},
-  { rank:14,userId:"me",name:"You",xp:2450,streak:7,level:5,isCurrentUser:true},
-];
+
 
 const RANK_STYLES: Record<number,{badge:string;bg:string;border:string}> = {
   1:{badge:"🥇",bg:"rgba(255,201,60,0.08)",border:"rgba(255,201,60,0.25)"},
@@ -27,7 +12,7 @@ const RANK_STYLES: Record<number,{badge:string;bg:string;border:string}> = {
 };
 
 export default function LeaderboardPage() {
-  const [entries, setEntries] = useState<LeaderboardEntry[]>(MOCK);
+  const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
